@@ -5,6 +5,10 @@
 #include <QDebug>
 #include <QFile>
 #include <QFileDialog>
+#include <QStandardPaths>
+#include <QTextCodec>
+#include <QRegularExpressionMatchIterator>
+#include <QStringList>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,6 +21,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private:
+    QString getFileContent(QString path);
 
 private slots:
     void on_btn_parse_clicked();
