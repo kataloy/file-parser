@@ -7,8 +7,13 @@
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QTextCodec>
+#include <QTextDocument>
 #include <QRegularExpressionMatchIterator>
 #include <QStringList>
+#include <QPdfWriter>
+#include <QPageSize>
+#include <QPrinter>
+#include <QPainter>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

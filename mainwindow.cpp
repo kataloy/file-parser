@@ -53,18 +53,26 @@ void MainWindow::on_btn_parse_clicked()
         QString path = dir + "/" + filename;
         QString content = getFileContent(path);
 
-        result += content + "\r\n___________________________________\r\n\r\n";
+        result += "Filename: " + filename + "\n\n" + content + "\n";
     }
 
-    QString filename = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/data.txt";
+    QString fileadress = dir + "/Листинг_" + dirParts.last();
 
-    QFile file_out(filename);
+    QFile file_out_doc(fileadress + ".doc");
+    QTextDocument file_out_pdf;
 
-    if (!file_out.open(QIODevice::WriteOnly)) {
+    file_out_pdf.setPlainText(result);
+
+    QPrinter printer(QPrinter::PrinterResolution);
+
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setOutputFileName(fileadress);
+    file_out_pdf.print(&printer);
+
+    if (!file_out_doc.open(QIODevice::WriteOnly)) {
         qDebug() << "Service::Error";
         return;
     }
 
-    file_out.write(result.toUtf8());
-
+    file_out_doc.write(result.toUtf8());
 }
