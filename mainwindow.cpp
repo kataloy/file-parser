@@ -53,6 +53,7 @@ void MainWindow::on_btn_parse_clicked()
         QString path = dir + "/" + filename;
         QString content = getFileContent(path);
 
+
         result += "Filename: " + filename + "\n\n" + content + "\n";
     }
 
@@ -66,7 +67,7 @@ void MainWindow::on_btn_parse_clicked()
     QPrinter printer(QPrinter::PrinterResolution);
 
     printer.setOutputFormat(QPrinter::PdfFormat);
-    printer.setOutputFileName(fileadress);
+    printer.setOutputFileName(fileadress + ".pdf");
     file_out_pdf.print(&printer);
 
     if (!file_out_doc.open(QIODevice::WriteOnly)) {
@@ -76,3 +77,5 @@ void MainWindow::on_btn_parse_clicked()
 
     file_out_doc.write(result.toUtf8());
 }
+
+
