@@ -42,8 +42,8 @@ void MainWindow::on_btn_parse_clicked()
 
     ui->file_adress->setText(adress);
 
-    QString result;
     QString source = getFileContent(adress);
+    QString result = "Filename: " + dirParts.last() + ".pro: " + "\n\n" + source + "\n\n\n\n\n";
     QRegularExpression regex("[a-z-A-Z-0-9\\-_]{1,}\\.(cpp|h|ui)");
     QRegularExpressionMatchIterator iterator = regex.globalMatch(source);
 
@@ -54,7 +54,7 @@ void MainWindow::on_btn_parse_clicked()
         QString content = getFileContent(path);
 
 
-        result += "Filename: " + filename + "\n\n" + content + "\n";
+        result += "Filename: " + filename + "\n\n" + content + "\n\n\n\n\n";
     }
 
     QString fileadress = dir + "/Листинг_" + dirParts.last();
